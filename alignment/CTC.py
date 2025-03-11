@@ -8,7 +8,7 @@ from num2words import num2words
 import argparse
 import csv
 import os
-import configparser
+from config_loader import config
 
 import uroman as ur
 
@@ -20,10 +20,6 @@ class CTC:
         self.bundle = MMS_FA
         self.model = self.bundle.get_model(with_star=False).to(device)
         self.device = device
-
-        config = configparser.ConfigParser()
-        script_path = os.path.dirname(__file__)
-        config.read(os.path.join(script_path, "config.ini"))
 
         self.sample_rate = int(config['PARAMS']['sr'])
 

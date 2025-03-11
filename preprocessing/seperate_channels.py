@@ -17,7 +17,6 @@ def seperate_channels(wav_file, saved_dir='audio_chan_sep'):
     """
     corpus_path = os.path.dirname(os.path.dirname(wav_file))
     output_dir = os.path.join(corpus_path, saved_dir)
-    # Ensure output directory exists
     os.makedirs(output_dir, exist_ok=True)
 
     # Generate base file name
@@ -47,8 +46,6 @@ def seperate_channels(wav_file, saved_dir='audio_chan_sep'):
             f"-hide_banner -loglevel error"
         )
         os.system(command)
-    else:
-        raise ValueError("Input audio file must be either mono or stereo.")
 
     return client_file, agent_file
 

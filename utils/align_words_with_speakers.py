@@ -1,5 +1,5 @@
 import pandas as pd
-from process_rttm import ProcessRTTM
+from utils.process_rttm import ProcessRTTM
 import os
 
 def align_words_with_speakers(words_csv_path, rttm_file_path, path_file, saved_dir='aligned_words_speakers'):

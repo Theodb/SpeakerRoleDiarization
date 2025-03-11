@@ -9,7 +9,6 @@ def preprocess_audio(file_path, saved_dir='audio_mono'):
 
     corpus_path = os.path.dirname(os.path.dirname(file_path))
     output_dir = os.path.join(corpus_path, saved_dir)
-    # Ensure output directory exists
     os.makedirs(output_dir, exist_ok=True)
 
     # Generate output file path
@@ -19,17 +18,8 @@ def preprocess_audio(file_path, saved_dir='audio_mono'):
     )
 
     # Construct and execute the ffmpeg command
-    os.system(f'ffmpeg -i {file_path} -ac 1 -ar 16000 {output_file} -hide_banner -loglevel error -y')
-
-    #'-ac', '1',      # Set audio channels to mono
-
-    #'-c:a', 'pcm_s16le',  # Set audio codec to Linear PCM (lossless)
-    #process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-    # Check for errors
-    #if process.returncode != 0:
-    #    raise RuntimeError(f"Error in ffmpeg processing: {process.stderr.decode('utf-8')}")
-
+    os.system(f'ffmpeg -i {file_path} -ar 16000 -c:a pcm_s16le {output_file} -hide_banner -loglevel error -y')
+    #-ac 1 
     return output_file
 
 if __name__=="__main__":
